@@ -1,0 +1,43 @@
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  jdkVersion: '17'  # or choose 11 if needed
+
+steps:
+  # ✅ Install a specific JDK version (e.g., Java 17)
+  - task: JavaToolInstaller@0
+    displayName: 'Install & Use JDK $(jdkVersion)'
+    inputs:
+      versionSpec: '$(jdkVersion)'
+      jdkArchitectureOption: 'x64'
+      jdkSourceOption: 'PreInstalled'  # uses pre-installed JDK on ubuntu-latest :contentReference[oaicite:1]{index=1}
+
+  # :contentReference[oaicite:2]{index=2}
+  - :contentReference[oaicite:3]{index=3}
+    :contentReference[oaicite:4]{index=4}
+    inputs:
+      :contentReference[oaicite:5]{index=5}
+      mavenOptions: '-Xmx3072m'
+      :contentReference[oaicite:6]{index=6}
+      jdkVersionOption: '$(jdkVersion)'
+      jdkArchitectureOption: 'x64'
+      publishJUnitResults: true
+      :contentReference[oaicite:7]{index=7}
+      :contentReference[oaicite:8]{index=8}
+
+  # :contentReference[oaicite:9]{index=9}
+  - :contentReference[oaicite:10]{index=10}
+    :contentReference[oaicite:11]{index=11}
+    inputs:
+      :contentReference[oaicite:12]{index=12}
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
